@@ -1,5 +1,6 @@
 package ge.ec.Controller;
 
+import ge.ec.Dto.ProductoSinUser;
 import ge.ec.Entity.Producto;
 import ge.ec.Service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class ProductoController {
     public ResponseEntity<?> findAll(){
         Map<String, Object> response = new HashMap<>();
         try{
-            List<Producto> productos = productoService.findAll();
+            List<ProductoSinUser> productos = productoService.findAll();
             response.put("productos: ", productos);
             return ResponseEntity.ok(response);
         }catch (Exception e){
@@ -36,8 +37,8 @@ public class ProductoController {
     public ResponseEntity<?> findById(@PathVariable Long id){
         Map<String, Object> response = new HashMap<>();
         try{
-            Producto productos = productoService.findById(id);
-            response.put("producto: ", productos);
+            ProductoSinUser productos = productoService.findById(id);
+            response.put("producto", productos);
             return ResponseEntity.ok(response);
         }catch (Exception e){
             response.put("Error ", e.getMessage());
